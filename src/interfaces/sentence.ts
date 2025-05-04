@@ -8,6 +8,12 @@ export interface Word {
 }
 
 export interface Sentence {
+    id: string;
     content: Word[];
     isOrdered: boolean;
+}
+
+export interface Position {
+    word: number;
+    letter: number;
 }
