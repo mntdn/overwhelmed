@@ -1,5 +1,5 @@
 import { Position } from "./interfaces/sentence";
-import * as sentence from "./libs/sentence";
+import { Sentence } from "./libs/sentence";
 import './style/main.scss';
 
 const gibberish = [];
@@ -10,8 +10,12 @@ for (let i = 0xA000; i < 0xA0FF; i++)
 // for (let i = 0x0041; i < 0x005A; i++)
 // 	gibberish.push(String.fromCodePoint(i));
 
-sentence.default.createSentence(gibberish);
-sentence.default.toHTML();
+var s = new Sentence(gibberish);
+
+var d = document.getElementById('app');
+if (d !== null) {
+	d.appendChild(s.toHTML());
+}
 
 (window as any).letterClick = (wPos: number, lPos: number) => {
 	if (swapSource === null) {
@@ -21,11 +25,11 @@ sentence.default.toHTML();
 		};
 	}
 	else {
-		sentence.default.swapLetters(swapSource, {
+		s.swapLetters(swapSource, {
 			word: wPos,
 			letter: lPos
 		});
-		sentence.default.toHTML();
+		s.render();
 		swapSource = null;
 	}
 }
