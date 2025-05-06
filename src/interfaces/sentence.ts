@@ -8,6 +8,7 @@ export interface Word {
 }
 
 export interface Position {
+    id: string;
     word: number;
     letter: number;
 }
